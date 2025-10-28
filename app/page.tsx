@@ -2,40 +2,75 @@
 
 import { GetUsers } from "@/services/getUsers";
 import { useRouter } from "next/navigation";
+import { useAppContext } from "@/contexts/AppContext";
+import { useEffect } from "react";
+import { ButtonGrey, ButtonOrange, ButtonPurple, Title } from "@/components/";
+import { IUser } from "@/models/user";
 
 export default function Home() {
   const users = GetUsers.getAll();
   const router = useRouter();
+  const { changeUser, clearUser } = useAppContext();
+
+  useEffect(() => {
+    clearUser();
+  }, [clearUser]);
 
   const handleUserSelection = (userId: number) => {
-    // Aqui você pode adicionar outras lógicas depois
-    console.log(`Usuário selecionado: ${userId}`);
+    const selectedUser = users.find(user => user.id === userId);
     
-    // Redireciona para a página de treinos
-    router.push("/treinos");
+    if (selectedUser) {
+      changeUser(selectedUser);
+      console.log(`Usuário selecionado: ${selectedUser.nome}`);
+      
+      router.push("/treinos");
+    }
   };
+
+  const renderUserButton = (user: IUser, index: number) => {
+    switch (index) {
+      case 0:
+        return (
+          <ButtonOrange
+            key={user.id}
+            onClick={() => handleUserSelection(user.id)}
+          >
+            {user.nome}
+          </ButtonOrange>
+        );
+
+      case 1:
+        return (
+          <ButtonPurple
+            key={user.id}
+            onClick={() => handleUserSelection(user.id)}
+          >
+            {user.nome}
+          </ButtonPurple>
+        );
+
+      default:
+        return (
+          <ButtonGrey
+            key={user.id}
+            onClick={() => handleUserSelection(user.id)}
+          >
+          {user.nome}
+        </ButtonGrey>
+      );
+    }
+  }
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-linear-to-br from-gray-900 to-black">
       <main className="flex flex-col items-center justify-center px-8 py-16 text-center">
-        <h1 className="mb-16 text-5xl font-bold text-white tracking-tight">
-          Quem vai treinar?
-        </h1>
+        <Title>Quem vai treinar?</Title>
         
         <div className="flex flex-col gap-6 sm:flex-row sm:gap-8">
-          <button 
-            onClick={() => handleUserSelection(users[0].id)}
-            className="w-48 h-16 bg-linear-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold text-xl rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
-          >
-            {users[0].nome}
-          </button>
-          
-          <button 
-            onClick={() => handleUserSelection(users[1].id)}
-            className="w-48 h-16 bg-linear-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold text-xl rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
-          >
-            {users[1].nome}
-          </button>
+          {users.length > 0 ? 
+            users.map((user, index) => renderUserButton(user, index)) 
+            : <span className="text-white text-xl">Nenhum usuário disponível</span>
+          }
         </div>
       </main>
     </div>
