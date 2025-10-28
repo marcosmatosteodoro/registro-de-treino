@@ -1,21 +1,52 @@
 "use client";
 
+import { ButtonGrey, ButtonOrange, ButtonPurple, NotFoundText, Title } from "@/components";
+import { useAppContext } from "@/contexts/AppContext";
+import { ITreino } from "@/models/treino";
 import { GetTreinos } from "@/services/getTreinos";
 import { GetTreinosByUser } from "@/services/getTreinosByUser";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Treinos() {
-  const treinos = GetTreinosByUser.getByUserId(1);
+  const { currentUser, setCurrentTreino, clearTreino } = useAppContext();
+  const treinos = GetTreinosByUser.getByUserId(currentUser?.id || 0);
   const router = useRouter();
 
-  const handleTreinoSelection = (treinoId: number) => {
-    // Aqui você pode adicionar outras lógicas depois
-    console.log(`Treino selecionado: ${treinoId}`);
-    
-    // Redireciona para a página de exercícios
-    router.push("/exercicios");
+  useEffect(() => {
+    clearTreino();
+  }, []);
+
+  const handleTreinoSelection = (treino: ITreino) => {
+    if (treino) {
+      setCurrentTreino(treino);
+      
+      router.push("/exercicios");
+    }
   };
+
+  const getButtonComponent = (index: number) => {
+    switch (index) {
+      case 0: return ButtonOrange;
+      case 1: return ButtonPurple;
+      default: return ButtonGrey;
+    }
+  };
+
+  const renderTreinoButton = (treino: ITreino, index: number) => {
+      const Button = getButtonComponent(index);
+  
+      return (
+        <Button
+          key={treino.id}
+          onClick={() => handleTreinoSelection(treino)}
+        >
+          {treino.nome}
+        </Button>
+      );
+    }
+
 
   return (
     <div className="flex min-h-screen flex-col bg-linear-to-br from-gray-900 to-black">
@@ -41,30 +72,19 @@ export default function Treinos() {
         </Link>
         
         <span className="text-gray-400 text-lg font-medium">
-          Evelin
+          {currentUser?.nome || "Usuário"}
         </span>
       </header>
 
       {/* Conteúdo principal */}
       <main className="flex flex-1 flex-col items-center justify-center px-8 py-16 text-center">
-        <h1 className="mb-16 text-5xl font-bold text-white tracking-tight">
-          Escolha seu treino
-        </h1>
+        <Title>Escolha seu treino</Title>
         
         <div className="flex flex-col gap-6 sm:flex-row sm:gap-8">
-          <button 
-            onClick={() => handleTreinoSelection(treinos[0].id)}
-            className="w-48 h-16 bg-linear-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold text-xl rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl cursor-pointer"
-          >
-            {treinos[0].nome}
-          </button>
-          
-          <button 
-            onClick={() => handleTreinoSelection(treinos[1].id)}
-            className="w-48 h-16 bg-linear-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold text-xl rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl cursor-pointer"
-          >
-            {treinos[1].nome}
-          </button>
+          {treinos.length >= 2 
+            ? treinos.map((treino, index) => renderTreinoButton(treino, index)) 
+            : <NotFoundText> Nenhum treino encontrado para este usuário.</NotFoundText>
+          }
         </div>
       </main>
     </div>
