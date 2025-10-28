@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "nome": "Exec A",
+    "peso": "15kg",
+    "repeticoes": 4,
+    "treinoId": 1
+  },
+  {
+    "id": 2,
+    "nome": "Exec B",
+    "peso": "20kg",
+    "repeticoes": 3,
+    "treinoId": 1
+  },
+  {
+    "id": 3,
+    "nome": "Exec C",
+    "peso": "12kg",
+    "repeticoes": 5,
+    "treinoId": 1
+  },
+  {
+    "id": 4,
+    "nome": "Exec D",
+    "peso": "18kg",
+    "repeticoes": 4,
+    "treinoId": 1
+  },
+  {
+    "id": 5,
+    "nome": "Exec E",
+    "peso": "25kg",
+    "repeticoes": 3,
+    "treinoId": 2
+  },
+  {
+    "id": 6,
+    "nome": "Exec F",
+    "peso": "10kg",
+    "repeticoes": 6,
+    "treinoId": 2
+  },
+  {
+    "id": 7,
+    "nome": "Exec G",
+    "peso": "22kg",
+    "repeticoes": 4,
+    "treinoId": 2
+  },
+  {
+    "id": 8,
+    "nome": "Exec H",
+    "peso": "16kg",
+    "repeticoes": 5,
+    "treinoId": 2
+  }
+]

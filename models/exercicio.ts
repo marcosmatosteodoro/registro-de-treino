@@ -3,12 +3,14 @@ export class Exercicio {
   nome: string;
   peso: string;
   repeticoes: number;
+  treinoId: number;
 
-  constructor(id: number, nome: string, peso: string, repeticoes: number) {
+  constructor(id: number, nome: string, peso: string, repeticoes: number, treinoId: number) {
     this.id = id;
     this.nome = nome;
     this.peso = peso;
     this.repeticoes = repeticoes;
+    this.treinoId = treinoId;
   }
 }
 
@@ -18,4 +20,5 @@ export interface IExercicio {
   nome: string;
   peso: string;
   repeticoes: number;
+  treinoId: number;
 }
