@@ -11,12 +11,12 @@
   },
   {
     "id": 3,
-    "nome": "Treino A",
+    "nome": "Superiores",
     "userId": 2
   },
   {
     "id": 4,
-    "nome": "Treino B",
+    "nome": "Inferiores",
     "userId": 2
   }
 ]
