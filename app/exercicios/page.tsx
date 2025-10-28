@@ -1,15 +1,18 @@
 "use client";
 
+import { Title, Header } from "@/components";
+import { useAppContext } from "@/contexts/AppContext";
 import { GetExerciciosByTreino } from "@/services/getExerciciosByTreino";
 import Link from "next/link";
 import { useState } from "react";
 
 export default function Exercicios() {
+  const { currentTreino } = useAppContext();
   const [checkedExercises, setCheckedExercises] = useState<boolean[]>(
     new Array(8).fill(false)
   );
 
-  const exercicios = GetExerciciosByTreino.getByTreinoId(1);
+  const exercicios = GetExerciciosByTreino.getByTreinoId(currentTreino?.id || 0);
 
   const handleCheckboxChange = (index: number) => {
     const newChecked = [...checkedExercises];
@@ -24,37 +27,12 @@ export default function Exercicios() {
   return (
     <div className="flex min-h-screen flex-col bg-linear-to-br from-gray-900 to-black">
       {/* Header com navegação */}
-      <header className="flex items-center justify-between p-4">
-        <Link 
-          href="/treinos"
-          className="flex items-center text-gray-400 hover:text-white transition-colors"
-        >
-          <svg 
-            className="w-6 h-6" 
-            fill="none" 
-            stroke="currentColor" 
-            viewBox="0 0 24 24"
-          >
-            <path 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              strokeWidth={2} 
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
-        </Link>
-        
-        <span className="text-gray-400 text-lg font-medium">
-          Evelin
-        </span>
-      </header>
+      <Header backRoute="/treinos" />
 
       {/* Conteúdo principal */}
       <main className="flex flex-1 flex-col items-center px-6 py-8">
-        <h1 className="mb-8 text-4xl font-bold text-white tracking-tight">
-          Treino A
-        </h1>
-        
+        <Title>{currentTreino?.nome}</Title>
+
         {/* Lista de exercícios */}
         <div className="w-full max-w-md space-y-4">
           {exercicios.map((exercicio, index) => (
