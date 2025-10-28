@@ -26,8 +26,8 @@ export default function Home() {
         <Title>Quem vai treinar?</Title>
         
         <div className="flex flex-col gap-6 sm:flex-row sm:gap-8">
-          {users.length > 0 ? 
-            users.map((user, index) => renderUserButton(user, index)) 
+          {users.length > 0 
+            ? users.map((user, index) => renderUserButton(user, index)) 
             : <NotFoundText>Nenhum usuário disponível</NotFoundText>
           }
         </div>
