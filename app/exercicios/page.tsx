@@ -3,14 +3,21 @@
 import { Title, Header } from "@/components";
 import { useAppContext } from "@/contexts/AppContext";
 import { GetExerciciosByTreino } from "@/services/getExerciciosByTreino";
+import { useValidation } from "@/hooks/useValidation";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Exercicios() {
   const { currentTreino } = useAppContext();
+  const { userValidate, treinoValidate } = useValidation();
   const [checkedExercises, setCheckedExercises] = useState<boolean[]>(
     new Array(8).fill(false)
   );
+
+  useEffect(() => {
+    userValidate();
+    treinoValidate();
+  }, []);
 
   const exercicios = GetExerciciosByTreino.getByTreinoId(currentTreino?.id || 0);
 

@@ -4,10 +4,18 @@ import { NotFoundText, Title, Header } from "@/components";
 import { ITreino } from "@/models/treino";
 import { useTreinosPage } from "@/hooks/useTreinosPage";
 import { useButtonComponent } from "@/hooks/useButtonComponent";
+import { useValidation } from "@/hooks/useValidation";
+import { useEffect } from "react";
 
 export default function Treinos() {
   const { treinos, handleTreinoSelection } = useTreinosPage();
   const { getButtonComponent } = useButtonComponent();
+  const { userValidate } = useValidation();
+
+  // Valida se tem usuário logado
+  useEffect(() => {
+    userValidate();
+  }, []);
 
   const renderTreinoButton = (treino: ITreino, index: number) => {
     const Button = getButtonComponent(index);
