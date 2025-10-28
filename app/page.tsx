@@ -3,9 +3,11 @@
 import { IUser } from "@/models/user";
 import { NotFoundText, Title } from "@/components/";
 import { useHomePage } from "@/hooks/useHomePage";
+import { useButtonComponent } from "@/hooks/useButtonComponent";
 
 export default function Home() {
-  const { users, handleUserSelection, getButtonComponent } = useHomePage();
+  const { users, handleUserSelection } = useHomePage();
+  const { getButtonComponent } = useButtonComponent();
 
   const renderUserButton = (user: IUser, index: number) => {
     const Button = getButtonComponent(index);

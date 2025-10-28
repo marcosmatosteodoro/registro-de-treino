@@ -3,9 +3,11 @@
 import { NotFoundText, Title, Header } from "@/components";
 import { ITreino } from "@/models/treino";
 import { useTreinosPage } from "@/hooks/useTreinosPage";
+import { useButtonComponent } from "@/hooks/useButtonComponent";
 
 export default function Treinos() {
-  const { treinos, handleTreinoSelection, getButtonComponent } = useTreinosPage();
+  const { treinos, handleTreinoSelection } = useTreinosPage();
+  const { getButtonComponent } = useButtonComponent();
 
   const renderTreinoButton = (treino: ITreino, index: number) => {
     const Button = getButtonComponent(index);
