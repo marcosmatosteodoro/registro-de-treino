@@ -1,133 +1,266 @@
 [
   {
     "id": 1,
-    "nome": "Exec A",
-    "peso": "15kg",
-    "series": 3,
-    "repeticoes": 4,
+    "nome": "ESTEIRA",
+    "peso": "0",
+    "series": 1,
+    "repeticoes": 12,
     "treinoId": 1
   },
   {
     "id": 2,
-    "nome": "Exec B",
-    "peso": "20kg",
+    "nome": "ELEVACAO FRONTAL",
+    "peso": "3kg",
     "series": 3,
-    "repeticoes": 3,
+    "repeticoes": 12,
     "treinoId": 1
   },
   {
     "id": 3,
-    "nome": "Exec C",
-    "peso": "12kg",
-    "series": 3,
-    "repeticoes": 5,
+    "nome": "CADEIRA ADUTORA",
+    "peso": "40kg",
+    "series": 4,
+    "repeticoes": 12,
     "treinoId": 1
   },
   {
     "id": 4,
-    "nome": "Exec D",
-    "peso": "18kg",
+    "nome": "SUPINO VERTICAL",
+    "peso": "15kg",
     "series": 3,
-    "repeticoes": 4,
+    "repeticoes": 12,
     "treinoId": 1
   },
   {
     "id": 5,
-    "nome": "Exec E",
-    "peso": "25kg",
+    "nome": "LEG PRESS HORIZONTAL",
+    "peso": "45kg",
     "series": 3,
-    "repeticoes": 3,
+    "repeticoes": 12,
     "treinoId": 1
   },
   {
     "id": 6,
-    "nome": "Exec F",
-    "peso": "10kg",
-    "series": 3,
-    "repeticoes": 6,
+    "nome": "BICEPS MARTELO",
+    "peso": "4kg",
+    "series": 4,
+    "repeticoes": 12,
     "treinoId": 1
   },
   {
     "id": 7,
-    "nome": "Exec G",
-    "peso": "22kg",
+    "nome": "TRICEPS TESTA HALTERES",
+    "peso": "5kg",
     "series": 3,
-    "repeticoes": 4,
+    "repeticoes": 12,
     "treinoId": 1
   },
   {
     "id": 8,
-    "nome": "Exec H",
-    "peso": "16kg",
+    "nome": "ENCOLIMENTO DE OMBROS",
+    "peso": "5kg",
     "series": 3,
-    "repeticoes": 5,
+    "repeticoes": 15,
     "treinoId": 1
   },
-
-
-
   {
     "id": 9,
     "nome": "ESTEIRA",
     "peso": "0",
     "series": 1,
-    "repeticoes": 5,
-    "treinoId": 4
+    "repeticoes": 10,
+    "treinoId": 2
   },
   {
     "id": 10,
+    "nome": "CADEIRA FLEXORA",
+    "peso": "30kg",
+    "series": 3,
+    "repeticoes": 12,
+    "treinoId": 2
+  },
+  {
+    "id": 11,
+    "nome": "PUXADOR ABERTO",
+    "peso": "20kg",
+    "series": 4,
+    "repeticoes": 12,
+    "treinoId": 2
+  },
+  {
+    "id": 12,
+    "nome": "CADEIRA ABDUTORA",
+    "peso": "0",
+    "series": 4,
+    "repeticoes": 12,
+    "treinoId": 2
+  },
+  {
+    "id": 13,
+    "nome": "TRICEPS BARRA CROSSOVER",
+    "peso": "0",
+    "series": 3,
+    "repeticoes": 15,
+    "treinoId": 2
+  },
+  {
+    "id": 14,
+    "nome": "DESENVOLVIMENTO NA MAQUINA",
+    "peso": "0",
+    "series": 3,
+    "repeticoes": 12,
+    "treinoId": 2
+  },
+  {
+    "id": 15,
+    "nome": "TRICEPS FRANCES",
+    "peso": "0",
+    "series": 3,
+    "repeticoes": 12,
+    "treinoId": 2
+  },
+  {
+    "id": 16,
+    "nome": "REMADA FECHADA MAQUINA",
+    "peso": "45kg",
+    "series": 3,
+    "repeticoes": 12,
+    "treinoId": 2
+  },
+  {
+    "id": 17,
+    "nome": "PRANCHA FRONTAL",
+    "peso": "0",
+    "series": 3,
+    "repeticoes": 12,
+    "treinoId": 2
+  },
+  {
+    "id": 18,
+    "nome": "ESTEIRA",
+    "peso": "0",
+    "series": 1,
+    "repeticoes": 5,
+    "treinoId": 3
+  },
+  {
+    "id": 19,
     "nome": "TRICEPS BARRA CROSSOVER",
     "peso": "20kg",
     "series": 3,
     "repeticoes": 5,
-    "treinoId": 4
+    "treinoId": 3
   },
   {
-    "id": 11,
+    "id": 20,
     "nome": "TRICEPS FRANCES",
     "peso": "16kg",
     "series": 3,
     "repeticoes": 5,
-    "treinoId": 4
+    "treinoId": 3
   },
   {
-    "id": 12,
+    "id": 21,
     "nome": "DESENVOLVIMENTO COM HALTERES NEUTRO",
     "peso": "16kg",
     "series": 3,
     "repeticoes": 5,
-    "treinoId": 4
+    "treinoId": 3
   },
   {
-    "id": 13,
+    "id": 22,
     "nome": "SUPINO VERTICAL",
     "peso": "16kg",
     "series": 3,
     "repeticoes": 5,
-    "treinoId": 4
+    "treinoId": 3
   },
   {
-    "id": 14,
+    "id": 23,
     "nome": "ROSCA SCOTT COM HALTER",
     "peso": "16kg",
     "series": 3,
     "repeticoes": 5,
-    "treinoId": 4
+    "treinoId": 3
   },
   {
-    "id": 15,
+    "id": 24,
     "nome": "BICEPS MARTELO",
     "peso": "16kg",
     "series": 3,
     "repeticoes": 5,
-    "treinoId": 4
+    "treinoId": 3
   },
   {
-    "id": 16,
+    "id": 25,
     "nome": "ENCOLHIMENTO DE OMBROS",
     "peso": "16kg",
     "series": 3,
     "repeticoes": 5,
+    "treinoId": 3
+  },
+  {
+    "id": 26,
+    "nome": "ESTEIRA",
+    "peso": "0",
+    "series": 1,
+    "repeticoes": 12,
+    "treinoId": 4
+  },
+  {
+    "id": 27,
+    "nome": "CADEIRA FLEXORA",
+    "peso": "0",
+    "series": 3,
+    "repeticoes": 12,
+    "treinoId": 4
+  },
+  {
+    "id": 28,
+    "nome": "CADEIRA EXTENSORA",
+    "peso": "0",
+    "series": 3,
+    "repeticoes": 12,
+    "treinoId": 4
+  },
+  {
+    "id": 29,
+    "nome": "CADEIRA ABDUTORA",
+    "peso": "0",
+    "series": 3,
+    "repeticoes": 12,
+    "treinoId": 4
+  },
+  {
+    "id": 30,
+    "nome": "CADEIRA ADUTORA",
+    "peso": "0",
+    "series": 3,
+    "repeticoes": 12,
+    "treinoId": 4
+  },
+  {
+    "id": 31,
+    "nome": "LEG PRESS",
+    "peso": "0",
+    "series": 3,
+    "repeticoes": 12,
+    "treinoId": 4
+  },
+  {
+    "id": 32,
+    "nome": "AGACHAMENTO SUMO",
+    "peso": "0",
+    "series": 3,
+    "repeticoes": 12,
+    "treinoId": 4
+  },
+  {
+    "id": 33,
+    "nome": "PRANCHA FRONTAL",
+    "peso": "0",
+    "series": 3,
+    "repeticoes": 12,
     "treinoId": 4
   }
 ]
