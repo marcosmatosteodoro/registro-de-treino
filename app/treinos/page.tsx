@@ -1,49 +1,24 @@
 "use client";
 
-import { ButtonGrey, ButtonOrange, ButtonPurple, NotFoundText, Title, Header } from "@/components";
-import { useAppContext } from "@/contexts/AppContext";
+import { NotFoundText, Title, Header } from "@/components";
 import { ITreino } from "@/models/treino";
-import { GetTreinosByUser } from "@/services/getTreinosByUser";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useTreinosPage } from "@/hooks/useTreinosPage";
 
 export default function Treinos() {
-  const { currentUser, setCurrentTreino, clearTreino } = useAppContext();
-  const treinos = GetTreinosByUser.getByUserId(currentUser?.id || 0);
-  const router = useRouter();
-
-  useEffect(() => {
-    clearTreino();
-  }, []);
-
-  const handleTreinoSelection = (treino: ITreino) => {
-    if (treino) {
-      setCurrentTreino(treino);
-      
-      router.push("/exercicios");
-    }
-  };
-
-  const getButtonComponent = (index: number) => {
-    switch (index) {
-      case 0: return ButtonOrange;
-      case 1: return ButtonPurple;
-      default: return ButtonGrey;
-    }
-  };
+  const { treinos, handleTreinoSelection, getButtonComponent } = useTreinosPage();
 
   const renderTreinoButton = (treino: ITreino, index: number) => {
-      const Button = getButtonComponent(index);
-  
-      return (
-        <Button
-          key={treino.id}
-          onClick={() => handleTreinoSelection(treino)}
-        >
-          {treino.nome}
-        </Button>
-      );
-    }
+    const Button = getButtonComponent(index);
+
+    return (
+      <Button
+        key={treino.id}
+        onClick={() => handleTreinoSelection(treino)}
+      >
+        {treino.nome}
+      </Button>
+    );
+  }
 
   return (
     <div className="flex min-h-screen flex-col bg-linear-to-br from-gray-900 to-black">
