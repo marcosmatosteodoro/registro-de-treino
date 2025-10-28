@@ -7,7 +7,7 @@ export class GetExercicios {
   }
 
   private static mapJsonToExercicio(exercicioData: any): Exercicio {
-    return new Exercicio(exercicioData.id, exercicioData.nome, exercicioData.peso, exercicioData.repeticoes, exercicioData.treinoId);
+    return new Exercicio(exercicioData.id, exercicioData.nome, exercicioData.peso, exercicioData.series, exercicioData.repeticoes, exercicioData.treinoId);
   }
 
   public static getAll(): Exercicio[] {

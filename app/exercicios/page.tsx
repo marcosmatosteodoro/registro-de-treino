@@ -5,6 +5,7 @@ import { useAppContext } from "@/contexts/AppContext";
 import { GetExerciciosByTreino } from "@/services/getExerciciosByTreino";
 import { useValidation } from "@/hooks/useValidation";
 import { useEffect, useState } from "react";
+import { IExercicio } from "@/models/exercicio";
 
 export default function Exercicios() {
   const { currentTreino } = useAppContext();
@@ -29,6 +30,23 @@ export default function Exercicios() {
   const handleRestore = () => {
     setCheckedExercises(new Array(8).fill(false));
   };
+
+  const getSeriesText = (series: number) => {
+    return `${series} ${series > 1 ? "séries" : "série"} • `;
+  }
+
+  const getRepeticoesText = (repeticoes: number) => {
+    return `${repeticoes} ${repeticoes > 1 ? "repetições" : "repetição"}`;
+  }
+
+  const getText = (exercicio: IExercicio) => {
+    let text = [
+      !!exercicio.peso && exercicio.peso != "0" ? `${exercicio.peso} • ` : "",
+      getSeriesText(exercicio.series),
+      exercicio.nome.toLowerCase() != "esteira" ? getRepeticoesText(exercicio.repeticoes) : `${exercicio.repeticoes} Minutos`,
+    ]
+    return text.join("");
+  }
 
   return (
     <div className="flex min-h-screen flex-col bg-linear-to-br from-gray-900 to-black">
@@ -55,9 +73,7 @@ export default function Exercicios() {
               
               <div className="flex-1 text-white">
                 <div className="font-semibold text-lg">{exercicio.nome}</div>
-                <div className="text-gray-300 text-sm">
-                  {exercicio.peso} • {exercicio.repeticoes} repetições
-                </div>
+                <div className="text-gray-300 text-sm">{getText(exercicio)}</div>
               </div>
             </div>
           ))}
