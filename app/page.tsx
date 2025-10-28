@@ -1,64 +1,46 @@
 "use client";
 
-import { GetUsers } from "@/services/getUsers";
+import { use, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { GetUsers } from "@/services/getUsers";
 import { useAppContext } from "@/contexts/AppContext";
-import { useEffect } from "react";
-import { ButtonGrey, ButtonOrange, ButtonPurple, Title } from "@/components/";
 import { IUser } from "@/models/user";
+import { ButtonGrey, ButtonOrange, ButtonPurple, Title } from "@/components/";
 
 export default function Home() {
   const users = GetUsers.getAll();
   const router = useRouter();
-  const { changeUser, clearUser } = useAppContext();
+  const { setCurrentUser, clearUser } = useAppContext();
 
   useEffect(() => {
     clearUser();
-  }, [clearUser]);
+  }, []);
 
-  const handleUserSelection = (userId: number) => {
-    const selectedUser = users.find(user => user.id === userId);
-    
-    if (selectedUser) {
-      changeUser(selectedUser);
-      console.log(`Usuário selecionado: ${selectedUser.nome}`);
+  const handleUserSelection = (user: IUser) => {
+    if (user) {
+      setCurrentUser(user);
+      console.log(`Usuário selecionado: ${user.nome}`);
       
       router.push("/treinos");
     }
   };
-
+  
   const renderUserButton = (user: IUser, index: number) => {
+    let Button;
     switch (index) {
-      case 0:
-        return (
-          <ButtonOrange
-            key={user.id}
-            onClick={() => handleUserSelection(user.id)}
-          >
-            {user.nome}
-          </ButtonOrange>
-        );
-
-      case 1:
-        return (
-          <ButtonPurple
-            key={user.id}
-            onClick={() => handleUserSelection(user.id)}
-          >
-            {user.nome}
-          </ButtonPurple>
-        );
-
-      default:
-        return (
-          <ButtonGrey
-            key={user.id}
-            onClick={() => handleUserSelection(user.id)}
-          >
-          {user.nome}
-        </ButtonGrey>
-      );
+      case 0: Button = ButtonOrange; break;
+      case 1: Button = ButtonPurple; break;
+      default: Button = ButtonGrey; break;
     }
+
+    return (
+      <Button
+        key={user.id}
+        onClick={() => handleUserSelection(user)}
+      >
+        {user.nome}
+      </Button>
+    );
   }
 
   return (

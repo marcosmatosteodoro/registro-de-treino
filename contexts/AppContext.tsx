@@ -7,8 +7,8 @@ import { createContext, useContext, useState, ReactNode } from 'react';
 interface AppContextType {
   currentUser: User | null;
   currentTreino: Treino | null;
-  changeUser: (user: User) => void;
-  changeTreino: (treino: Treino) => void;
+  setCurrentUser: (user: User) => void;
+  setCurrentTreino: (treino: Treino) => void;
   clearUser: () => void;
   clearTreino: () => void;
 }
@@ -23,17 +23,8 @@ export function AppProvider({ children }: AppProviderProps) {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [currentTreino, setCurrentTreino] = useState<Treino | null>(null);
 
-  const changeUser = (user: User) => {
-    setCurrentUser(user);
-  };
-
-  const changeTreino = (treino: Treino) => {
-    setCurrentTreino(treino);
-  };
-
   const clearUser = () => {
     setCurrentUser(null);
-    // Limpar treino também quando limpar usuário
     setCurrentTreino(null);
   };
 
@@ -44,8 +35,8 @@ export function AppProvider({ children }: AppProviderProps) {
   const value: AppContextType = {
     currentUser,
     currentTreino,
-    changeUser,
-    changeTreino,
+    setCurrentUser,
+    setCurrentTreino,
     clearUser,
     clearTreino,
   };
