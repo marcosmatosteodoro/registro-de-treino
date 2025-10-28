@@ -4,7 +4,6 @@ import { Title, Header } from "@/components";
 import { useAppContext } from "@/contexts/AppContext";
 import { GetExerciciosByTreino } from "@/services/getExerciciosByTreino";
 import { useValidation } from "@/hooks/useValidation";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Exercicios() {
