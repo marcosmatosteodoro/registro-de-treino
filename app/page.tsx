@@ -1,37 +1,14 @@
 "use client";
 
-import { use, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { GetUsers } from "@/services/getUsers";
-import { useAppContext } from "@/contexts/AppContext";
 import { IUser } from "@/models/user";
-import { ButtonGrey, ButtonOrange, ButtonPurple, Title } from "@/components/";
+import { Title } from "@/components/";
+import { useHomePage } from "@/hooks/useHomePage";
 
 export default function Home() {
-  const users = GetUsers.getAll();
-  const router = useRouter();
-  const { setCurrentUser, clearUser } = useAppContext();
-
-  useEffect(() => {
-    clearUser();
-  }, []);
-
-  const handleUserSelection = (user: IUser) => {
-    if (user) {
-      setCurrentUser(user);
-      console.log(`Usuário selecionado: ${user.nome}`);
-      
-      router.push("/treinos");
-    }
-  };
+  const { users, handleUserSelection, getButtonComponent } = useHomePage();
   
   const renderUserButton = (user: IUser, index: number) => {
-    let Button;
-    switch (index) {
-      case 0: Button = ButtonOrange; break;
-      case 1: Button = ButtonPurple; break;
-      default: Button = ButtonGrey; break;
-    }
+    const Button = getButtonComponent(index);
 
     return (
       <Button
