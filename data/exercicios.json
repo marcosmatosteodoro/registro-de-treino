@@ -32,27 +32,27 @@
     "nome": "Exec E",
     "peso": "25kg",
     "repeticoes": 3,
-    "treinoId": 2
+    "treinoId": 1
   },
   {
     "id": 6,
     "nome": "Exec F",
     "peso": "10kg",
     "repeticoes": 6,
-    "treinoId": 2
+    "treinoId": 1
   },
   {
     "id": 7,
     "nome": "Exec G",
     "peso": "22kg",
     "repeticoes": 4,
-    "treinoId": 2
+    "treinoId": 1
   },
   {
     "id": 8,
     "nome": "Exec H",
     "peso": "16kg",
     "repeticoes": 5,
-    "treinoId": 2
+    "treinoId": 1
   }
 ]
