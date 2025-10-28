@@ -1,12 +1,12 @@
 "use client";
 
 import { IUser } from "@/models/user";
-import { Title } from "@/components/";
+import { NotFoundText, Title } from "@/components/";
 import { useHomePage } from "@/hooks/useHomePage";
 
 export default function Home() {
   const { users, handleUserSelection, getButtonComponent } = useHomePage();
-  
+
   const renderUserButton = (user: IUser, index: number) => {
     const Button = getButtonComponent(index);
 
@@ -28,7 +28,7 @@ export default function Home() {
         <div className="flex flex-col gap-6 sm:flex-row sm:gap-8">
           {users.length > 0 ? 
             users.map((user, index) => renderUserButton(user, index)) 
-            : <span className="text-white text-xl">Nenhum usuário disponível</span>
+            : <NotFoundText>Nenhum usuário disponível</NotFoundText>
           }
         </div>
       </main>
