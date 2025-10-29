@@ -210,7 +210,7 @@
   {
     "id": 27,
     "nome": "CADEIRA FLEXORA",
-    "peso": "0",
+    "peso": "40kg",
     "series": 3,
     "repeticoes": 12,
     "treinoId": 4
@@ -218,7 +218,7 @@
   {
     "id": 28,
     "nome": "CADEIRA EXTENSORA",
-    "peso": "0",
+    "peso": "30kg",
     "series": 3,
     "repeticoes": 12,
     "treinoId": 4
@@ -226,7 +226,7 @@
   {
     "id": 29,
     "nome": "CADEIRA ABDUTORA",
-    "peso": "0",
+    "peso": "40kg",
     "series": 3,
     "repeticoes": 12,
     "treinoId": 4
@@ -234,7 +234,7 @@
   {
     "id": 30,
     "nome": "CADEIRA ADUTORA",
-    "peso": "0",
+    "peso": "40kg",
     "series": 3,
     "repeticoes": 12,
     "treinoId": 4
@@ -242,7 +242,7 @@
   {
     "id": 31,
     "nome": "LEG PRESS",
-    "peso": "0",
+    "peso": "35kg",
     "series": 3,
     "repeticoes": 12,
     "treinoId": 4
@@ -250,7 +250,7 @@
   {
     "id": 32,
     "nome": "AGACHAMENTO SUMO",
-    "peso": "0",
+    "peso": "12kg",
     "series": 3,
     "repeticoes": 12,
     "treinoId": 4
