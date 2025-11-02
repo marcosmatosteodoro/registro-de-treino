@@ -4,7 +4,10 @@ interface TitleProps {
 
 export const Title = ({ children }: TitleProps) => {
   return (
-    <h1 className="mb-16 text-5xl font-bold text-white tracking-tight">
+    <h1 
+      className="mb-16 text-5xl font-bold text-white tracking-tight"
+      data-testid="title"
+    >
       {children}
     </h1>
   );

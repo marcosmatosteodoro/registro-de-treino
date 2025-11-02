@@ -4,6 +4,11 @@ interface NotFoundTextProps {
 
 export const NotFoundText = ({ children }: NotFoundTextProps) => {
   return (
-    <span className="text-white text-xl">{children}</span>
+    <span 
+      className="text-white text-xl"
+      data-testid="not-found-text"
+    >
+      {children}
+    </span>
   );
 }

@@ -9,16 +9,21 @@ export const Header = ({ backRoute }: HeaderProps) => {
   const { currentUser } = useAppContext();
 
   return (
-    <header className="flex items-center justify-between p-4">
+    <header 
+      className="flex items-center justify-between p-4"
+      data-testid="header"
+    >
       <Link 
         href={backRoute}
         className="flex items-center text-gray-400 hover:text-white transition-colors cursor-pointer"
+        data-testid="back-link"
       >
         <svg 
           className="w-6 h-6" 
           fill="none" 
           stroke="currentColor" 
           viewBox="0 0 24 24"
+          data-testid="back-icon"
         >
           <path 
             strokeLinecap="round" 
@@ -29,7 +34,10 @@ export const Header = ({ backRoute }: HeaderProps) => {
         </svg>
       </Link>
       
-      <span className="text-gray-400 text-lg font-medium">
+      <span 
+        className="text-gray-400 text-lg font-medium"
+        data-testid="user-name"
+      >
         {currentUser?.nome || "Usuário"}
       </span>
     </header>
