@@ -2,8 +2,11 @@
 
 import { Title, Header } from "@/components";
 import { useExercicioPage } from "@/hooks/useExercicioPage";
+import { useValidation } from "@/hooks/useValidation";
+import { useEffect } from "react";
 
 export default function Exercicios() {
+  const { userValidate, treinoValidate } = useValidation();
   const {
     currentTreino,
     exerciciosComChecked,
@@ -11,6 +14,12 @@ export default function Exercicios() {
     handleRestore,
     getText
   } = useExercicioPage();
+
+  // Validações iniciais
+  useEffect(() => {
+    userValidate();
+    treinoValidate();
+  }, [userValidate, treinoValidate]);
 
   return (
     <div className="flex min-h-screen flex-col bg-linear-to-br from-gray-900 to-black">

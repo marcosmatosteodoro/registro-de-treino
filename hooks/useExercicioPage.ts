@@ -2,12 +2,10 @@ import { useEffect, useMemo, useState } from "react";
 import { useAppContext } from "@/contexts/AppContext";
 import { GetExerciciosByTreino } from "@/services/getExerciciosByTreino";
 import { TreinoStorageService } from "@/services/treinoStorage";
-import { useValidation } from "@/hooks/useValidation";
 import { IExercicio, IExercicioWithChecked } from "@/models/exercicio";
 
 export const useExercicioPage = () => {
   const { currentTreino } = useAppContext();
-  const { userValidate, treinoValidate } = useValidation();
   const [exerciciosComChecked, setExerciciosComChecked] = useState<IExercicioWithChecked[]>([]);
 
   const exercicios = useMemo(() => {
@@ -69,12 +67,6 @@ export const useExercicioPage = () => {
     ];
     return text.join("");
   };
-
-  // Validações iniciais
-  useEffect(() => {
-    userValidate();
-    treinoValidate();
-  }, [userValidate, treinoValidate]);
 
   // Carrega estado inicial dos exercícios
   useEffect(() => {
