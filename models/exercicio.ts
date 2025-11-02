@@ -25,3 +25,7 @@ export interface IExercicio {
   repeticoes: number;
   treinoId: number;
 }
+
+export interface IExercicioWithChecked extends IExercicio {
+  checked: boolean;
+}

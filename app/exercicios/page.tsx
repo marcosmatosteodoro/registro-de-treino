@@ -5,12 +5,8 @@ import { useAppContext } from "@/contexts/AppContext";
 import { GetExerciciosByTreino } from "@/services/getExerciciosByTreino";
 import { useValidation } from "@/hooks/useValidation";
 import { useEffect, useMemo, useState } from "react";
-import { IExercicio } from "@/models/exercicio";
+import { IExercicio, IExercicioWithChecked } from "@/models/exercicio";
 import { LocalStorageUtil } from "@/utils/localStorage";
-
-interface IExercicioWithChecked extends IExercicio {
-  checked: boolean;
-}
 
 interface ISavedTreinoData {
   id: number;
