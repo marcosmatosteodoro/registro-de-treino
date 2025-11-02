@@ -4,11 +4,18 @@ import { Title, Header } from "@/components";
 import { useAppContext } from "@/contexts/AppContext";
 import { GetExerciciosByTreino } from "@/services/getExerciciosByTreino";
 import { useValidation } from "@/hooks/useValidation";
-import { use, useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { IExercicio } from "@/models/exercicio";
+import { LocalStorageUtil } from "@/utils/localStorage";
 
 interface IExercicioWithChecked extends IExercicio {
   checked: boolean;
+}
+
+interface ISavedTreinoData {
+  id: number;
+  nome: string;
+  exercicios: IExercicioWithChecked[];
 }
 
 export default function Exercicios() {
@@ -21,10 +28,35 @@ export default function Exercicios() {
   }, [currentTreino]);
 
   const handleSetExercicios = (newChecked: IExercicioWithChecked[]) => {
+    // Salva no localStorage antes de persistir no useState
+    if (currentTreino) {
+      const treinoData = {
+        ...currentTreino,
+        exercicios: newChecked
+      };
+      LocalStorageUtil.setItem(`treino-${currentTreino.id}`, treinoData);
+    }
+    
     setExerciciosComChecked(newChecked);
   };
 
   const getInitialCheckedState = () => {
+    // Tenta recuperar dados salvos do localStorage
+    if (currentTreino) {
+      const savedTreino = LocalStorageUtil.getItem<ISavedTreinoData>(`treino-${currentTreino.id}`);
+      if (savedTreino && savedTreino.exercicios) {
+        // Mapeia os exercícios com os estados salvos
+        return exercicios.map(exercicio => {
+          const savedExercicio = savedTreino.exercicios.find((ex: IExercicioWithChecked) => ex.id === exercicio.id);
+          return { 
+            ...exercicio, 
+            checked: savedExercicio ? savedExercicio.checked : false 
+          };
+        });
+      }
+    }
+    
+    // Se não houver dados salvos, retorna com todos desmarcados
     return exercicios.map(exercicio => ({ ...exercicio, checked: false }));
   };
 
