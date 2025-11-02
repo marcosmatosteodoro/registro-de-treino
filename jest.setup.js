@@ -2,3 +2,5 @@
 // If you delete this file, remove `setupFilesAfterEnv` from `jest.config.js`
 
 // Learn more: https://jestjs.io/docs/configuration#setupfilesafterenv-array
+
+require("@testing-library/jest-dom");
