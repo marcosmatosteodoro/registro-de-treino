@@ -9,10 +9,13 @@
     "lint": "eslint",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "build:pwa": "next build && echo 'PWA build complete! Check .next/ for service worker files'",
+    "analyze": "next build --experimental-debug && echo 'Build analysis complete'"
   },
   "dependencies": {
     "next": "16.0.0",
+    "next-pwa": "^5.6.0",
     "react": "19.2.0",
     "react-dom": "19.2.0"
   },
@@ -22,6 +25,7 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.0",
     "@types/jest": "^29.5.14",
+    "@types/next-pwa": "^5.6.9",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
@@ -29,6 +33,7 @@
     "eslint-config-next": "16.0.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
+    "sharp": "^0.34.4",
     "tailwindcss": "^4",
     "ts-jest": "^29.4.5",
     "typescript": "^5"
