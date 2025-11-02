@@ -55,15 +55,22 @@ export function PWAInstallPrompt() {
   }
 
   return (
-    <div className="fixed bottom-4 left-4 right-4 bg-gray-800 text-white p-4 rounded-lg shadow-lg z-50 max-w-sm mx-auto border border-gray-700">
+    <div 
+      className="fixed bottom-4 left-4 right-4 bg-gray-800 text-white p-4 rounded-lg shadow-lg z-50 max-w-sm mx-auto border border-gray-700"
+      data-testid="pwa-install-prompt"
+    >
       <div className="flex items-start gap-3">
         <div className="shrink-0">
-          <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center">
+          <div 
+            className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center"
+            data-testid="pwa-icon"  
+          >
             <svg
               className="w-4 h-4 text-white"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              data-testid="pwa-icon-svg"
             >
               <path
                 strokeLinecap="round"
@@ -76,10 +83,16 @@ export function PWAInstallPrompt() {
         </div>
         
         <div className="flex-1 min-w-0">
-          <h3 className="text-sm font-semibold text-white">
+          <h3 
+            className="text-sm font-semibold text-white"
+            data-testid="pwa-title"
+          >
             Instalar App
           </h3>
-          <p className="text-xs text-gray-300 mt-1">
+          <p 
+            className="text-xs text-gray-300 mt-1"
+            data-testid="pwa-description"
+          >
             Adicione o Registro de Treino à sua tela inicial para acesso rápido
           </p>
         </div>
@@ -88,23 +101,32 @@ export function PWAInstallPrompt() {
           onClick={handleDismiss}
           className="shrink-0 text-gray-400 hover:text-white"
           aria-label="Fechar"
+          data-testid="pwa-close-button"
         >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg 
+            className="w-4 h-4" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+            data-testid="pwa-close-icon"
+          >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
       
-      <div className="flex gap-2 mt-3">
+      <div className="flex gap-2 mt-3" data-testid="pwa-buttons-container">
         <button
           onClick={handleInstallClick}
           className="flex-1 bg-orange-500 hover:bg-orange-600 text-white text-sm font-medium py-2 px-4 rounded-md transition-colors"
+          data-testid="pwa-install-button"
         >
           Instalar
         </button>
         <button
           onClick={handleDismiss}
           className="flex-1 bg-gray-700 hover:bg-gray-600 text-white text-sm font-medium py-2 px-4 rounded-md transition-colors"
+          data-testid="pwa-dismiss-button"
         >
           Agora não
         </button>
