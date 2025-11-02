@@ -4,7 +4,7 @@ import { Title, Header } from "@/components";
 import { useAppContext } from "@/contexts/AppContext";
 import { GetExerciciosByTreino } from "@/services/getExerciciosByTreino";
 import { useValidation } from "@/hooks/useValidation";
-import { use, useEffect, useState } from "react";
+import { use, useCallback, useEffect, useMemo, useState } from "react";
 import { IExercicio } from "@/models/exercicio";
 
 interface IExercicioWithChecked extends IExercicio {
@@ -15,17 +15,14 @@ export default function Exercicios() {
   const { currentTreino } = useAppContext();
   const { userValidate, treinoValidate } = useValidation();
   const [exerciciosComChecked, setExerciciosComChecked] = useState<IExercicioWithChecked[]>([]);
-  const exercicios = GetExerciciosByTreino.getByTreinoId(currentTreino?.id || 0);
 
-  useEffect(() => {
-    userValidate();
-    treinoValidate();
-  }, []);
+  const exercicios = useMemo(() => {
+    return GetExerciciosByTreino.getByTreinoId(currentTreino?.id || 0);
+  }, [currentTreino]);
 
-  useEffect(() => {
-    setExerciciosComChecked(exercicios.map(exercicio => ({ ...exercicio, checked: false })));
-  }, []);
-
+  const getInitialCheckedState = () => {
+    return exercicios.map(exercicio => ({ ...exercicio, checked: false }));
+  };
 
   const handleCheckboxChange = (id: number) => {
     const newChecked = exerciciosComChecked.map(exercicio => ({ ...exercicio, checked: exercicio.id === id ? !exercicio.checked : exercicio.checked }));
@@ -52,6 +49,16 @@ export default function Exercicios() {
     ]
     return text.join("");
   }
+
+  useEffect(() => {
+    userValidate();
+    treinoValidate();
+  }, []);
+
+  useEffect(() => {
+    const initialCheckedState = getInitialCheckedState()
+    setExerciciosComChecked(initialCheckedState);
+  }, []);
 
   return (
     <div className="flex min-h-screen flex-col bg-linear-to-br from-gray-900 to-black">
