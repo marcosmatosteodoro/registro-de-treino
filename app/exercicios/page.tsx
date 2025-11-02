@@ -4,31 +4,36 @@ import { Title, Header } from "@/components";
 import { useAppContext } from "@/contexts/AppContext";
 import { GetExerciciosByTreino } from "@/services/getExerciciosByTreino";
 import { useValidation } from "@/hooks/useValidation";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { IExercicio } from "@/models/exercicio";
+
+interface IExercicioWithChecked extends IExercicio {
+  checked: boolean;
+}
 
 export default function Exercicios() {
   const { currentTreino } = useAppContext();
   const { userValidate, treinoValidate } = useValidation();
-  const [checkedExercises, setCheckedExercises] = useState<boolean[]>(
-    new Array(8).fill(false)
-  );
+  const [exerciciosComChecked, setExerciciosComChecked] = useState<IExercicioWithChecked[]>([]);
+  const exercicios = GetExerciciosByTreino.getByTreinoId(currentTreino?.id || 0);
 
   useEffect(() => {
     userValidate();
     treinoValidate();
   }, []);
 
-  const exercicios = GetExerciciosByTreino.getByTreinoId(currentTreino?.id || 0);
+  useEffect(() => {
+    setExerciciosComChecked(exercicios.map(exercicio => ({ ...exercicio, checked: false })));
+  }, []);
 
-  const handleCheckboxChange = (index: number) => {
-    const newChecked = [...checkedExercises];
-    newChecked[index] = !newChecked[index];
-    setCheckedExercises(newChecked);
+
+  const handleCheckboxChange = (id: number) => {
+    const newChecked = exerciciosComChecked.map(exercicio => ({ ...exercicio, checked: exercicio.id === id ? !exercicio.checked : exercicio.checked }));
+    setExerciciosComChecked(newChecked);
   };
 
   const handleRestore = () => {
-    setCheckedExercises(new Array(8).fill(false));
+    setExerciciosComChecked(exercicios.map(exercicio => ({ ...exercicio, checked: false })));
   };
 
   const getSeriesText = (series: number) => {
@@ -59,15 +64,15 @@ export default function Exercicios() {
 
         {/* Lista de exercícios */}
         <div className="w-full max-w-md space-y-4">
-          {exercicios.map((exercicio, index) => (
+          {exerciciosComChecked.map((exercicio, index) => (
             <div 
               key={index}
               className="flex items-center space-x-4 p-4 bg-gray-800/50 rounded-lg border border-gray-700/50 hover:bg-gray-700/50 transition-colors"
             >
               <input
                 type="checkbox"
-                checked={checkedExercises[index]}
-                onChange={() => handleCheckboxChange(index)}
+                checked={exercicio.checked}
+                onChange={() => handleCheckboxChange(exercicio.id)}
                 className="w-5 h-5 text-orange-500 bg-gray-700 border-gray-600 rounded focus:ring-orange-500 focus:ring-2"
               />
               
