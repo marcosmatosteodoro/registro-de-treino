@@ -20,17 +20,21 @@ export default function Exercicios() {
     return GetExerciciosByTreino.getByTreinoId(currentTreino?.id || 0);
   }, [currentTreino]);
 
+  const handleSetExercicios = (newChecked: IExercicioWithChecked[]) => {
+    setExerciciosComChecked(newChecked);
+  };
+
   const getInitialCheckedState = () => {
     return exercicios.map(exercicio => ({ ...exercicio, checked: false }));
   };
 
   const handleCheckboxChange = (id: number) => {
     const newChecked = exerciciosComChecked.map(exercicio => ({ ...exercicio, checked: exercicio.id === id ? !exercicio.checked : exercicio.checked }));
-    setExerciciosComChecked(newChecked);
+    handleSetExercicios(newChecked);
   };
 
   const handleRestore = () => {
-    setExerciciosComChecked(exercicios.map(exercicio => ({ ...exercicio, checked: false })));
+    handleSetExercicios(exercicios.map(exercicio => ({ ...exercicio, checked: false })));
   };
 
   const getSeriesText = (series: number) => {
@@ -57,7 +61,7 @@ export default function Exercicios() {
 
   useEffect(() => {
     const initialCheckedState = getInitialCheckedState()
-    setExerciciosComChecked(initialCheckedState);
+    handleSetExercicios(initialCheckedState);
   }, []);
 
   return (
