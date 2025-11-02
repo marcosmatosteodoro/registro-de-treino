@@ -23,12 +23,12 @@ export default function Home() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-linear-to-br from-gray-900 to-black">
-      <main className="flex flex-col items-center justify-center px-8 py-16 text-center">
+    <div className="flex min-h-screen items-center justify-center bg-linear-to-br from-gray-900 to-black" data-testid="home-page">
+      <main className="flex flex-col items-center justify-center px-8 py-16 text-center" data-testid="home-main">
         <Title>Quem vai treinar?</Title>
         
-        <div className="flex flex-col gap-6 sm:flex-row sm:gap-8">
-          {users.length > 0 
+        <div className="flex flex-col gap-6 sm:flex-row sm:gap-8" data-testid="users-container">
+          {users && users.length > 0 
             ? users.map((user, index) => renderUserButton(user, index)) 
             : <NotFoundText>Nenhum usuário disponível</NotFoundText>
           }

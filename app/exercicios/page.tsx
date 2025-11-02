@@ -22,31 +22,33 @@ export default function Exercicios() {
   }, [userValidate, treinoValidate]);
 
   return (
-    <div className="flex min-h-screen flex-col bg-linear-to-br from-gray-900 to-black">
+    <div className="flex min-h-screen flex-col bg-linear-to-br from-gray-900 to-black" data-testid="exercicios-page">
       {/* Header com navegação */}
       <Header backRoute="/treinos" />
 
       {/* Conteúdo principal */}
-      <main className="flex flex-1 flex-col items-center px-6 py-8">
+      <main className="flex flex-1 flex-col items-center px-6 py-8" data-testid="exercicios-main">
         <Title>{currentTreino?.nome}</Title>
 
         {/* Lista de exercícios */}
-        <div className="w-full max-w-md space-y-4">
+        <div className="w-full max-w-md space-y-4" data-testid="exercicios-list">
           {exerciciosComChecked.map((exercicio, index) => (
             <div 
               key={index}
               className="flex items-center space-x-4 p-4 bg-gray-800/50 rounded-lg border border-gray-700/50 hover:bg-gray-700/50 transition-colors"
+              data-testid={`exercicio-item-${exercicio.id}`}
             >
               <input
                 type="checkbox"
                 checked={exercicio.checked}
                 onChange={() => handleCheckboxChange(exercicio.id)}
                 className="w-5 h-5 text-orange-500 bg-gray-700 border-gray-600 rounded focus:ring-orange-500 focus:ring-2"
+                data-testid={`exercicio-checkbox-${exercicio.id}`}
               />
               
-              <div className="flex-1 text-white">
-                <div className="font-semibold text-lg">{exercicio.nome}</div>
-                <div className="text-gray-300 text-sm">{getText(exercicio)}</div>
+              <div className="flex-1 text-white" data-testid={`exercicio-content-${exercicio.id}`}>
+                <div className="font-semibold text-lg" data-testid={`exercicio-nome-${exercicio.id}`}>{exercicio.nome}</div>
+                <div className="text-gray-300 text-sm" data-testid={`exercicio-text-${exercicio.id}`}>{getText(exercicio)}</div>
               </div>
             </div>
           ))}
@@ -56,6 +58,7 @@ export default function Exercicios() {
         <button
           onClick={handleRestore}
           className="mt-8 w-48 h-12 bg-linear-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold text-lg rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105"
+          data-testid="restaurar-button"
         >
           Restaurar
         </button>
